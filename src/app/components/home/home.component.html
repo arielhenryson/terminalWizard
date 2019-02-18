@@ -1,0 +1,5 @@
+<div *ngFor="let cmd of data">
+  {{ cmd }}
+</div>
+
+<input [(ngModel)]="activeCmd" (keypress)="keypressHandler($event)" class="prompt" autofocus />
