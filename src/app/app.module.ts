@@ -9,9 +9,6 @@ import { HttpClientModule, HttpClient } from '@angular/common/http'
 import { AppRoutingModule } from './app-routing.module'
 
 
-import { TerminalModule } from 'primeng/primeng'
-
-
 // NG Translate
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core'
 import { TranslateHttpLoader } from '@ngx-translate/http-loader'
@@ -49,7 +46,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     }),
     BrowserAnimationsModule,
   ],
-  providers: [ElectronService],
-  bootstrap: [AppComponent]
+  providers: [ ElectronService ],
+  bootstrap: [ AppComponent ]
 })
 export class AppModule { }
