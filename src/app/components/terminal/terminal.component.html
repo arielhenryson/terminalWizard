@@ -1,4 +1,4 @@
-<div *ngFor="let cmd of data">
+<div *ngFor="let cmd of data | async">
   {{ cmd }}
 </div>
 

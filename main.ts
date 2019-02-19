@@ -1,14 +1,14 @@
 import { app, BrowserWindow, screen } from 'electron'
 import * as path from 'path'
 import * as url from 'url'
-import './server/main'
+import { server } from './server/main'
 
 let win, serve
 const args = process.argv.slice(1)
 serve = args.some(val => val === '--serve')
 
-function createWindow() {
 
+function createWindow() {
   const electronScreen = screen
   const size = electronScreen.getPrimaryDisplay().workAreaSize
 
@@ -23,6 +23,9 @@ function createWindow() {
     minWidth: 300,
     minHeight: 160
   })
+
+
+  server(win)
 
   if (serve) {
     require('electron-reload')(__dirname, {

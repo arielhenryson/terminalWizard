@@ -1,5 +1,7 @@
 import 'reflect-metadata'
 import '../polyfills'
+
+import { RXBox } from 'rxbox'
 import { BrowserModule } from '@angular/platform-browser'
 import { NgModule } from '@angular/core'
 import { FormsModule } from '@angular/forms'
@@ -13,13 +15,14 @@ import { AppRoutingModule } from './app-routing.module'
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core'
 import { TranslateHttpLoader } from '@ngx-translate/http-loader'
 
-import { ElectronService } from './providers/electron.service'
+import { ElectronService } from './services/electron/electron.service'
 
 import { WebviewDirective } from './directives/webview.directive'
 
 import { AppComponent } from './app.component'
 import { TerminalComponent } from './components/terminal/terminal.component'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
+import { TerminalService } from './services/terminal/terminal.service'
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -46,7 +49,13 @@ export function HttpLoaderFactory(http: HttpClient) {
     }),
     BrowserAnimationsModule,
   ],
-  providers: [ ElectronService ],
-  bootstrap: [ AppComponent ]
+  providers: [
+    RXBox,
+    ElectronService,
+    TerminalService
+  ],
+  bootstrap: [
+    AppComponent
+  ]
 })
 export class AppModule { }
