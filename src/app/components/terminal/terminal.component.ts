@@ -1,11 +1,10 @@
-import { Component, OnInit } from '@angular/core'
+import { Component } from '@angular/core'
 
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html'
+  templateUrl: './terminal.component.html'
 })
-export class HomeComponent {
+export class TerminalComponent {
   data = []
   activeCmd = ''
 

@@ -18,7 +18,7 @@ import { ElectronService } from './providers/electron.service'
 import { WebviewDirective } from './directives/webview.directive'
 
 import { AppComponent } from './app.component'
-import { HomeComponent } from './components/home/home.component'
+import { TerminalComponent } from './components/terminal/terminal.component'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 
 // AoT requires an exported function for factories
@@ -29,7 +29,7 @@ export function HttpLoaderFactory(http: HttpClient) {
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,
+    TerminalComponent,
     WebviewDirective
   ],
   imports: [
