@@ -1,17 +1,17 @@
 import { Component, OnInit } from '@angular/core'
+import { RXBox } from 'rxbox'
 import { Observable } from 'rxjs'
 
 
-import { TerminalService } from '../../services/terminal/terminal.service'
-import { RXBox } from 'rxbox'
+import { TerminalService } from '../../../services/terminal/terminal.service'
 
 
 @Component({
-  templateUrl: 'terminal.component.html'
+  selector: 'app-logs',
+  templateUrl: 'logs.component.html'
 })
-export class TerminalComponent implements OnInit {
+export class LogsComponent implements OnInit {
   data: Observable<any>
-
 
   constructor(
     private terminalService: TerminalService,
