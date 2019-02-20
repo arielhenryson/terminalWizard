@@ -11,6 +11,12 @@ html, body {
 }
 
 
+body {
+  margin: 15px 0 0 0;
+  overflow: hidden;
+}
+
+
 
 .prompt {
   font-size: $promptFontSize;

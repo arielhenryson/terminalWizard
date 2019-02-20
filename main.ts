@@ -21,7 +21,8 @@ function createWindow() {
     width: 800,
     height: 500,
     minWidth: 300,
-    minHeight: 160
+    minHeight: 160,
+    titleBarStyle: 'hidden'
   })
 
 
@@ -40,7 +41,7 @@ function createWindow() {
     }))
   }
 
-  // win.webContents.openDevTools()
+  win.webContents.openDevTools()
 
   // Emitted when the window is closed.
   win.on('closed', () => {

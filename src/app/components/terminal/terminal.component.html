@@ -1,5 +1,8 @@
-<div *ngFor="let cmd of data | async">
-  {{ cmd }}
+<div>
+  <div *ngFor="let cmd of data | async">
+    {{ cmd }}
+  </div>
+
+  <input [(ngModel)]="activeCmd" (keypress)="keypressHandler($event)" class="prompt" autofocus />
 </div>
 
-<input [(ngModel)]="activeCmd" (keypress)="keypressHandler($event)" class="prompt" autofocus />
