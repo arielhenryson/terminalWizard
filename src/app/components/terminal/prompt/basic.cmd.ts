@@ -1,0 +1,21 @@
+export const cmds = [
+  'cron',
+  'ping',
+  'chmod',
+  'wget',
+  'nohup',
+  'ifconfig',
+  'chown',
+  'gzip',
+  'vi',
+  'ls',
+  'df',
+  'dd',
+  'netstat',
+  'mkdir',
+  'mount',
+  'find',
+  'tail',
+  'rm',
+  'bzip2'
+]

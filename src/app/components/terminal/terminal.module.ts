@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core'
-import { FormsModule } from '@angular/forms'
-import { OverlayModule } from '@angular/cdk/overlay'
+import { FormsModule, ReactiveFormsModule } from '@angular/forms'
+import { MatAutocompleteModule, MatFormFieldModule, MatInputModule } from '@angular/material'
 
 
 import { TerminalComponent } from './terminal.component'
@@ -20,7 +20,10 @@ import { AutocompleteComponent } from './autocomplete/autocomplete.component'
   imports: [
     BrowserModule,
     FormsModule,
-    OverlayModule
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatAutocompleteModule
   ]
 })
 export class TerminalModule {}
