@@ -1,5 +1,6 @@
 import { Component } from '@angular/core'
 import { RXBox } from 'rxbox'
+import { Overlay } from '@angular/cdk/overlay'
 
 
 @Component({
@@ -11,7 +12,8 @@ export class PromptComponent {
 
 
   constructor(
-    private store: RXBox
+    private store: RXBox,
+    private overlay: Overlay
   ) {}
 
 
