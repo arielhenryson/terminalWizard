@@ -8,6 +8,7 @@ import { PromptComponent } from './prompt/prompt.component'
 import { BrowserModule } from '@angular/platform-browser'
 import { LogsComponent } from './logs/logs.component'
 import { AutocompleteComponent } from './autocomplete/autocomplete.component'
+import { OverlayModule } from '@angular/cdk/overlay'
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { AutocompleteComponent } from './autocomplete/autocomplete.component'
     ReactiveFormsModule,
     MatFormFieldModule,
     MatInputModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
+    OverlayModule
   ]
 })
 export class TerminalModule {}

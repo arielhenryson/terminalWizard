@@ -1,9 +1,20 @@
-
 <form>
-    <input type="text" [formControl]="myControl" [matAutocomplete]="auto" [(ngModel)]="activeCmd" (keypress)="keypressHandler($event)" class="prompt">
-    <mat-autocomplete #auto="matAutocomplete">
-      <mat-option *ngFor="let option of options" [value]="option">
-        {{option}}
-      </mat-option>
-    </mat-autocomplete>
+    <input type="text" [formControl]="myControl" [(ngModel)]="activeCmd" (keypress)="keypressHandler($event)" class="prompt" cdkOverlayOrigin #trigger="cdkOverlayOrigin">
 </form>
+
+
+<ng-template
+  cdkConnectedOverlay
+  [cdkConnectedOverlayOrigin]="trigger"
+  [cdkConnectedOverlayOpen]="isAutocompleteOpen"
+>
+  <div [style.width]="'600px'" [style.left]="activeCmd.length * 10 + 'px'" class="autocomplete">
+    1
+    <br>
+    2
+    <br>
+    3
+    <br>
+  </div>
+
+</ng-template>

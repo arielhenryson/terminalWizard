@@ -1,7 +1,9 @@
 import { Component, ViewChild } from '@angular/core'
 import { FormControl } from '@angular/forms'
 import { RXBox } from 'rxbox'
-import { MatAutocompleteTrigger } from '@angular/material'
+import { Overlay } from '@angular/cdk/overlay'
+
+
 import { cmds } from './basic.cmd'
 
 
@@ -10,24 +12,29 @@ import { cmds } from './basic.cmd'
   templateUrl: 'prompt.component.html'
 })
 export class PromptComponent {
+  isAutocompleteOpen = false
   myControl = new FormControl()
   options: string[] = cmds
 
   activeCmd = ''
 
-  @ViewChild(MatAutocompleteTrigger) autocomplete: MatAutocompleteTrigger
 
   constructor(
-    private store: RXBox
+    private store: RXBox,
+    private overlay: Overlay
   ) {}
 
 
   keypressHandler($event) {
-    this.autocomplete.closePanel()
-
     if ($event.code === 'Enter') {
       this.pushCmd()
     }
+
+    if (this.activeCmd.length) {
+      return this.isAutocompleteOpen = true
+    }
+
+    this.isAutocompleteOpen = false
   }
 
 
@@ -41,5 +48,9 @@ export class PromptComponent {
     })
 
     this.activeCmd = ''
+  }
+
+
+  openAutocomplete() {
   }
 }

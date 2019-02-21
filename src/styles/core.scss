@@ -19,9 +19,15 @@ body {
 
 
 .prompt {
+  width: 100%;
   font-size: $promptFontSize;
   background: none;
   border: none;
   color: #a2c7ee;
   outline: none;
+}
+
+
+.autocomplete {
+  position: relative;
 }
