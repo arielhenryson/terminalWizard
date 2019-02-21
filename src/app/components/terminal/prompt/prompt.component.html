@@ -1,11 +1,9 @@
 
 <form>
-  <mat-form-field>
-    <input type="text" [formControl]="myControl" [matAutocomplete]="auto" matInput [(ngModel)]="activeCmd" (keypress)="keypressHandler($event)">
+    <input type="text" [formControl]="myControl" [matAutocomplete]="auto" [(ngModel)]="activeCmd" (keypress)="keypressHandler($event)" class="prompt">
     <mat-autocomplete #auto="matAutocomplete">
       <mat-option *ngFor="let option of options" [value]="option">
         {{option}}
       </mat-option>
     </mat-autocomplete>
-  </mat-form-field>
 </form>
