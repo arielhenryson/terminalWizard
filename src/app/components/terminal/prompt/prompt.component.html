@@ -1,5 +1,11 @@
 <form>
-    <input type="text" [formControl]="myControl" [(ngModel)]="activeCmd" (keypress)="keypressHandler($event)" class="prompt" cdkOverlayOrigin #trigger="cdkOverlayOrigin">
+    <input type="text"
+           [formControl]="myControl"
+           [(ngModel)]="activeCmd"
+           (keypress)="keypressHandler($event)"
+           class="prompt"
+           cdkOverlayOrigin
+           #trigger="cdkOverlayOrigin">
 </form>
 
 
@@ -8,13 +14,5 @@
   [cdkConnectedOverlayOrigin]="trigger"
   [cdkConnectedOverlayOpen]="isAutocompleteOpen"
 >
-  <div [style.width]="'600px'" [style.left]="activeCmd.length * 10 + 'px'" class="autocomplete">
-    1
-    <br>
-    2
-    <br>
-    3
-    <br>
-  </div>
-
+  <app-autocomplete></app-autocomplete>
 </ng-template>

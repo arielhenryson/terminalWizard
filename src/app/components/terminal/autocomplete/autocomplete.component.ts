@@ -1,19 +1,21 @@
-import { Component, OnInit } from '@angular/core'
+import { Component } from '@angular/core'
 
 
 import { RXBox } from 'rxbox'
 
 
 @Component({
-  selector: 'autocomplete',
+  selector: 'app-autocomplete',
   templateUrl: 'autocomplete.component.html'
 })
-export class AutocompleteComponent implements OnInit {
+export class AutocompleteComponent {
+  activeCmd = ''
+
   constructor(
     private store: RXBox
-  ) {}
-
-
-  ngOnInit() {
+  ) {
+    this.store.watch('activeCmd').subscribe(cmd => {
+      this.activeCmd = cmd
+    })
   }
 }

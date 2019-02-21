@@ -26,13 +26,20 @@ export class PromptComponent {
 
 
   keypressHandler($event) {
+    this.store.assignState({
+      activeCmd: this.activeCmd
+    })
+
+
     if ($event.code === 'Enter') {
       this.pushCmd()
     }
 
+
     if (this.activeCmd.length) {
       return this.isAutocompleteOpen = true
     }
+
 
     this.isAutocompleteOpen = false
   }
@@ -48,9 +55,5 @@ export class PromptComponent {
     })
 
     this.activeCmd = ''
-  }
-
-
-  openAutocomplete() {
   }
 }
