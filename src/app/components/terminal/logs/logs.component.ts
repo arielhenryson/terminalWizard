@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core'
 import { RXBox } from 'rxbox'
-import { Observable } from 'rxjs'
 
 
 import { TerminalService } from '../../../services/terminal/terminal.service'
@@ -11,7 +10,7 @@ import { TerminalService } from '../../../services/terminal/terminal.service'
   templateUrl: 'logs.component.html'
 })
 export class LogsComponent implements OnInit {
-  data: Observable<any>
+  data
 
   constructor(
     private terminalService: TerminalService,
@@ -23,6 +22,8 @@ export class LogsComponent implements OnInit {
     this.terminalService.startWatch()
 
 
-    this.data = this.store.watch('data')
+    this.store.watch('data').subscribe(data => {
+      this.data = data
+    })
   }
 }

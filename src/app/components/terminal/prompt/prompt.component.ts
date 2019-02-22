@@ -1,7 +1,6 @@
-import { Component, ViewChild } from '@angular/core'
+import { Component } from '@angular/core'
 import { FormControl } from '@angular/forms'
 import { RXBox } from 'rxbox'
-import { Overlay } from '@angular/cdk/overlay'
 
 
 import { cmds } from './basic.cmd'
@@ -23,7 +22,6 @@ export class PromptComponent {
   constructor(
     private store: RXBox,
     private terminalService: TerminalService,
-    private overlay: Overlay
   ) {
     this.terminalService.cmdResponseHandler()
   }
@@ -37,13 +35,6 @@ export class PromptComponent {
 
     if ($event.code === 'Enter') {
       this.pushCmd()
-
-      setTimeout(() => {
-        this.activeCmd = '.'
-        setTimeout(() => {
-          this.activeCmd = ''
-        })
-      })
     }
 
 
