@@ -22,4 +22,22 @@ export class TerminalService {
       })
     })
   }
+
+
+  sendCmd(cmd) {
+    this.electronService.ipcRenderer.send('cmd', cmd)
+  }
+
+
+  cmdResponseHandler() {
+    this.electronService.ipcRenderer.on('cmd-reply', (event, arg) => {
+      const data = this.store.getState()['data']
+
+      data.push(arg)
+
+      this.store.assignState({
+        data
+      })
+    })
+  }
 }

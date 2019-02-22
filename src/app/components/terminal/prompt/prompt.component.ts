@@ -5,6 +5,7 @@ import { Overlay } from '@angular/cdk/overlay'
 
 
 import { cmds } from './basic.cmd'
+import { TerminalService } from '../../../services/terminal/terminal.service'
 
 
 @Component({
@@ -21,8 +22,11 @@ export class PromptComponent {
 
   constructor(
     private store: RXBox,
+    private terminalService: TerminalService,
     private overlay: Overlay
-  ) {}
+  ) {
+    this.terminalService.cmdResponseHandler()
+  }
 
 
   keypressHandler($event) {
@@ -33,6 +37,13 @@ export class PromptComponent {
 
     if ($event.code === 'Enter') {
       this.pushCmd()
+
+      setTimeout(() => {
+        this.activeCmd = '.'
+        setTimeout(() => {
+          this.activeCmd = ''
+        })
+      })
     }
 
 
@@ -53,6 +64,9 @@ export class PromptComponent {
     this.store.assignState({
       data
     })
+
+
+    this.terminalService.sendCmd(this.activeCmd)
 
     this.activeCmd = ''
   }
