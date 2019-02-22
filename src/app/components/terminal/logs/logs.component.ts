@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core'
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core'
 import { RXBox } from 'rxbox'
 
 
@@ -13,6 +13,7 @@ export class LogsComponent implements OnInit {
   data
 
   constructor(
+    private ref: ChangeDetectorRef,
     private terminalService: TerminalService,
     private store: RXBox
   ) {}
@@ -24,6 +25,7 @@ export class LogsComponent implements OnInit {
 
     this.store.watch('data').subscribe(data => {
       this.data = data
+      this.ref.detectChanges()
     })
   }
 }
