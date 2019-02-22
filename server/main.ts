@@ -1,19 +1,30 @@
 const { ipcMain } = require('electron')
-const spawn = require('child_process').spawn
+import * as os from 'os'
+import * as pty from 'node-pty'
 
+
+const shell = process.env[os.platform() === 'win32' ? 'COMSPEC' : 'SHELL']
+
+const ptyProcess = pty.spawn(shell, [], {
+  name: 'xterm-color',
+  cols: 80,
+  rows: 30,
+  cwd: process.cwd(),
+  env: process.env
+})
+
+
+ptyProcess.on('data', data => {
+  process.stdout.write(data)
+  ipcMain.emit('cmd-reply', data)
+})
 
 export function server(win) {
   ipcMain.on('cmd', (event, command) => {
     const { commandName, args } = parseCommand(command)
 
 
-    const childProcess = spawn(commandName, args, {
-      shell: this.shell
-    })
-
-    childProcess.stdout.on('data', data => event.sender.send('cmd-reply', data.toString()))
-    childProcess.stderr.on('data', data => event.sender.send('cmd-reply', data.toString()))
-    // childProcess.on('close', exitCode => this.emit('end', exitCode.toString()));
+    ptyProcess.write(`${commandName} ${args}`)
   })
 }
 
