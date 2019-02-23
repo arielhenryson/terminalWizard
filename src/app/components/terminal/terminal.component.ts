@@ -1,19 +1,9 @@
-import { Component, OnInit } from '@angular/core'
-
-
-import { TerminalService } from '../../services/terminal/terminal.service'
+import { Component } from '@angular/core'
 
 
 @Component({
   templateUrl: 'terminal.component.html'
 })
-export class TerminalComponent implements OnInit {
-  constructor(
-    private terminalService: TerminalService,
-  ) {}
-
-
-  ngOnInit() {
-    this.terminalService.startWatch()
-  }
+export class TerminalComponent {
+  constructor() {}
 }

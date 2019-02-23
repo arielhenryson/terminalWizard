@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core'
 import { RXBox } from 'rxbox'
+
+
 import { ElectronService } from '../electron/electron.service'
 
 
@@ -11,33 +13,20 @@ export class TerminalService {
   ) {}
 
 
-  startWatch() {
-    this.electronService.ipcRenderer.on('data', (event, message) => {
-      const data = this.store.getState()['data']
-
-      data.push(message)
-
-      this.store.assignState({
-        data
-      })
-    })
-  }
-
-
   sendCmd(cmd) {
     this.electronService.ipcRenderer.send('cmd', cmd)
   }
 
 
   cmdResponseHandler() {
-    this.electronService.ipcRenderer.on('cmd-reply', (event, arg) => {
-      const data = this.store.getState()['data']
+      this.electronService.ipcRenderer.on('cmd-reply', (event, arg) => {
+        const data = this.store.getState()['data']
 
-      data.push(arg)
+        data.push(arg)
 
-      this.store.assignState({
-        data
+        this.store.assignState({
+          data
+        })
       })
-    })
   }
 }

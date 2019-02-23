@@ -33,6 +33,7 @@
     "@angular/animations": "^7.2.5",
     "@angular/cdk": "^7.3.2",
     "@angular/material": "~7.3.2",
+    "child_pty": "^3.0.10",
     "hammerjs": "^2.0.8",
     "node-pty": "^0.8.1",
     "rxbox": "^0.3.2",

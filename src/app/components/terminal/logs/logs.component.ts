@@ -20,8 +20,7 @@ export class LogsComponent implements OnInit {
 
 
   ngOnInit() {
-    this.terminalService.startWatch()
-
+    this.terminalService.cmdResponseHandler()
 
     this.store.watch('data').subscribe(data => {
       this.data = data

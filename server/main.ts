@@ -14,17 +14,19 @@ const ptyProcess = pty.spawn(shell, [], {
 })
 
 
-ptyProcess.on('data', data => {
-  process.stdout.write(data)
-  ipcMain.emit('cmd-reply', data)
-})
-
 export function server(win) {
+  ptyProcess.on('data', data => {
+    // process.stdout.write(data)
+    // ipcMain.emit('cmd-reply', data)
+    win.send('cmd-reply', data)
+  })
+
+
   ipcMain.on('cmd', (event, command) => {
     const { commandName, args } = parseCommand(command)
 
 
-    ptyProcess.write(`${commandName} ${args}`)
+    ptyProcess.write(`${commandName} ${args}` + '\n')
   })
 }
 

@@ -16,15 +16,14 @@ export class PromptComponent {
   myControl = new FormControl()
   options: string[] = cmds
 
+
   activeCmd = ''
 
 
   constructor(
     private store: RXBox,
     private terminalService: TerminalService,
-  ) {
-    this.terminalService.cmdResponseHandler()
-  }
+  ) {}
 
 
   keypressHandler($event) {
@@ -48,15 +47,6 @@ export class PromptComponent {
 
 
   pushCmd() {
-    const data = this.store.getState()['data']
-
-    data.push(this.activeCmd)
-
-    this.store.assignState({
-      data
-    })
-
-
     this.terminalService.sendCmd(this.activeCmd)
 
     this.activeCmd = ''
