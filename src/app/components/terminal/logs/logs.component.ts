@@ -1,8 +1,9 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core'
 import { RXBox } from 'rxbox'
+import { Terminal } from 'xterm'
 
 
-import { TerminalService } from '../../../services/terminal/terminal.service'
+import { ElectronService } from '../../../services/electron/electron.service'
 
 
 @Component({
@@ -10,21 +11,38 @@ import { TerminalService } from '../../../services/terminal/terminal.service'
   templateUrl: 'logs.component.html'
 })
 export class LogsComponent implements OnInit {
-  data
+  term
 
   constructor(
     private ref: ChangeDetectorRef,
-    private terminalService: TerminalService,
-    private store: RXBox
+    private electronService: ElectronService,
   ) {}
 
 
   ngOnInit() {
-    this.terminalService.cmdResponseHandler()
+    this.term = new Terminal()
+    const termEL = document.getElementById('terminal')
+    this.term.open(termEL)
+    this.term.prompt = () => {
+      this.term.write('\r\n$ ')
+    }
 
-    this.store.watch('data').subscribe(data => {
-      this.data = data
-      this.ref.detectChanges()
+    this.term.writeln('Welcome to xterm.js')
+    this.term.prompt()
+
+
+    this.term.on('paste', data => {
+      this.term.write(data)
+    })
+
+
+    this.term.on('data', data => {
+      this.electronService.ipcRenderer.send('cmd', data)
+    })
+
+
+    this.electronService.ipcRenderer.on('cmd-reply', (event, arg) => {
+      this.term.write(arg)
     })
   }
 }

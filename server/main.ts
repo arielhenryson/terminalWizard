@@ -23,10 +23,7 @@ export function server(win) {
 
 
   ipcMain.on('cmd', (event, command) => {
-    const { commandName, args } = parseCommand(command)
-
-
-    ptyProcess.write(`${commandName} ${args}` + '\n')
+    ptyProcess.write(command)
   })
 }
 

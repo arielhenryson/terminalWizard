@@ -25,9 +25,12 @@
               "src/favicon.512x512.png"
             ],
             "styles": [
+              "node_modules/xterm/dist/xterm.css",
               "src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/xterm/dist/xterm.js"
+            ]
           },
           "configurations": {
             "dev": {

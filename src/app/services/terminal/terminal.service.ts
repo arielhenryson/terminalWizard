@@ -20,12 +20,8 @@ export class TerminalService {
 
   cmdResponseHandler() {
       this.electronService.ipcRenderer.on('cmd-reply', (event, arg) => {
-        const data = this.store.getState()['data']
-
-        data.push(arg)
-
         this.store.assignState({
-          data
+          data: arg
         })
       })
   }
