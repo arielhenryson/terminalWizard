@@ -1,5 +1,5 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core'
-import { RXBox } from 'rxbox'
+import * as fit from 'xterm/dist/addons/fit/fit'
 import { Terminal } from 'xterm'
 
 
@@ -20,8 +20,15 @@ export class LogsComponent implements OnInit {
 
 
   ngOnInit() {
-    this.term = new Terminal()
+    this.term = new Terminal({
+      rows: 27,
+      allowTransparency: true,
+      theme: {
+        background: '#2b2b2b'
+      }
+    })
     const termEL = document.getElementById('terminal')
+    // this.term.applyAddon(fit)
     this.term.open(termEL)
     this.term.prompt = () => {
       this.term.write('\r\n$ ')

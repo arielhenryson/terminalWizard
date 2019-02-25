@@ -22,7 +22,7 @@ function createWindow() {
     height: 500,
     minWidth: 300,
     minHeight: 160,
-    titleBarStyle: 'hidden'
+    // titleBarStyle: 'hidden'
   })
 
 
