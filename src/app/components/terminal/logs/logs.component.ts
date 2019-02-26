@@ -2,6 +2,7 @@ import { ChangeDetectorRef, Component, OnInit } from '@angular/core'
 import * as fit from 'xterm/dist/addons/fit/fit'
 import { Terminal } from 'xterm'
 
+Terminal.applyAddon(fit)
 
 import { ElectronService } from '../../../services/electron/electron.service'
 
@@ -28,7 +29,6 @@ export class LogsComponent implements OnInit {
       }
     })
     const termEL = document.getElementById('terminal')
-    // this.term.applyAddon(fit)
     this.term.open(termEL)
     this.term.prompt = () => {
       this.term.write('\r\n$ ')
@@ -50,6 +50,15 @@ export class LogsComponent implements OnInit {
 
     this.electronService.ipcRenderer.on('cmd-reply', (event, arg) => {
       this.term.write(arg)
+    })
+
+
+    setTimeout(() => {
+      this.term.fit()
+    }, 1000)
+
+    window.addEventListener('resize', e => {
+      this.term.fit()
     })
   }
 }
