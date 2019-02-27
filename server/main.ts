@@ -3,7 +3,7 @@ import * as os from 'os'
 import * as pty from 'node-pty'
 
 
-const shell = process.env[os.platform() === 'win32' ? 'COMSPEC' : 'SHELL']
+const shell = os.platform() === 'win32' ? 'powershell.exe' : 'bash'
 
 const ptyProcess = pty.spawn(shell, [], {
   name: 'xterm-color',
